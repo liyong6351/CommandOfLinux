@@ -29,14 +29,31 @@ awk是处理文本文件的一个应用程序，几乎所有 Linux 系统都自�
 
 * awk -F ':' '{print NR ") " $1}' demo.txt
 
-|内置变量名|说明|
-|:--|:--|
-|FILENAME|文件名|
-|FS|字段分隔符，默认是空格和制表符|
-|RS|行分隔符，默认是空格|
+|内置变量名|说明|默认值|
+|:--|:--|--|
+|FILENAME|文件名||
+|FS|字段分隔符|空格和制表符|
+|RS|行分隔符|默认是换行符|
 |OFS|输出字段的分隔符，用于打印时分割字段|
 |ORS|输出行分隔符，用于打印时分割字段
-|OFMT|数字的输出格式，默认为%.6g|
+|OFMT|数字的输出格式|%.6g|
+|N ARGC|The number of command-line arguments||
+|N ARGV|An arrayThe name of the current input file of command-line argumentsThe number of records already read||
+|A FS|The input field separator|space|
+|A NF|The number of fields in the current record||
+|G CONVFMT|TheThe name of the current input file conversion format for numbers|%.6The number of records already readg|
+|G FIELDWIDTHS|A whitespace, separated||
+|G IGNORECASE|Controls the case sensitivity|Zero (case-sensitive)|
+|P FNR|The current record number||
+|A FILENAME|The name of the current input file||
+|A NR|The number of records already read||
+|A OFS|The output field separator|space|
+|A ORS|||
+|A OFMT|||
+|N RLENGTH|||
+|A RS|||
+|N RSTART|||
+|N SUBSEP|||
 
 ## 3 函数
 
@@ -64,5 +81,8 @@ awk是处理文本文件的一个应用程序，几乎所有 Linux 系统都自�
 * awk -F ':' '/usr/ {print $1}' demo.txt
 上面代码中，print命令前面是一个正则表达式，只输出包含usr的行。
 
-## 5 条件
+## 5 if 语句
 
+> awk提供了if结构，用于编写复杂的条件。
+
+* awk -F ':' '{if ($1 > "m") print $1}' demo.txt
